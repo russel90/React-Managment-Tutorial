@@ -35,7 +35,7 @@ class App extends Component{
   componentDidMount(){
     this.timer = setInterval(this.progress, 20);
     this.callApi()    
-    .then(res =>this.setState({Customers:res}))
+    .then(res =>this.setState({customers:res}))
     .catch(err => console.log(err));
   }
 
@@ -68,7 +68,7 @@ class App extends Component{
             </TableHead>
             <TableBody>
               {
-                this.state.Customers ? this.state.Customers.map( c=> {
+                this.state.customers ? this.state.customers.map((c) => {
                   return(<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>);
                 }) : 
                 <TableRow>
