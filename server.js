@@ -28,7 +28,6 @@ app.get('/api/customers', (req,res)=>{
         "SELECT ID, IMAGE, NAME, BIRTHDAY, GENDER, JOB FROM CUSTOMER",
         (err, rows, fields) => {
             res.send(rows);
-            console.log(rows);
         }
     );
 });
