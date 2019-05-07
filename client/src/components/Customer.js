@@ -5,7 +5,7 @@ import TableCell from '@material-ui/core/TableCell';
 class Customer extends React.Component{
     render(){
         return(
-            <TableRow>
+            <TableRow key={this.props.key}>
                 <TableCell>{this.props.id}</TableCell>
                 <TableCell><img src={this.props.image} alt="profile"/></TableCell>       
                 <TableCell>{this.props.name}</TableCell>
