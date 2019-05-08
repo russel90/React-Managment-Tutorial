@@ -28,17 +28,16 @@ const upload = multer({dest:'./upload'});
 
 app.get('/api/customers', (req,res)=>{
     connection.query(
-        "SELECT ID, IMAGE, NAME, BIRTHDAY, GENDER, JOB FROM CUSTOMER",
+        "SELECT ID, IMAGE, NAME, BIRTHDAY, GENDER, JOB FROM CUSTOMER WHERE ISDELETED = 0",
         (err, rows, fields) => {
             res.send(rows);
-            // console.log(err);
         }
     );
 });
 
 app.use('/image',express.static('./upload'));
 app.post('/api/customers',upload.single('image'), (req, res) => {
-    let sql = 'INSERT INTO CUSTOMER (ID, IMAGE, NAME, BIRTHDAY, GENDER, JOB) VALUES( null, ?, ?, ?, ?, ?)';
+    let sql = 'INSERT INTO CUSTOMER (ID, IMAGE, NAME, BIRTHDAY, GENDER, JOB) VALUES( null, ?, ?, ?, ?, ?, now(), 0)';
 
     let image = '/image/' + req.file.filename;  
     let name = req.body.name;
@@ -59,6 +58,17 @@ app.post('/api/customers',upload.single('image'), (req, res) => {
             res.send(rows);
             // console.log(err);
         });
+});
+
+app.delete('/app/customers/:id', (req, res)=>{
+    let sql = 'UPDATE CUSTOMER SET ISDELETED= 1 WHERE ID = ?';
+    let params = [req.params.id];
+
+    connection.query(sql, params,
+        (err, rows, fields)=>{
+            res.send(rows);
+        }
+    );
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
