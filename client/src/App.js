@@ -1,5 +1,4 @@
-// import React, {Component} from 'react';
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Customer from './components/Customer';
@@ -28,11 +27,7 @@ const styles = theme => ({
   }
 })
 
-class App extends React.Component{
-  // state = {
-  //  customers: "",
-  //  completed: 0
-  // }
+class App extends Component {
 
   constructor(props){
     super(props);
@@ -56,13 +51,14 @@ class App extends React.Component{
   componentDidMount(){
     this.timer = setInterval(this.progress, 20);
     this.callApi()    
-    .then(res =>this.setState({customers:res}))
-    .catch(err => console.log(err));
+      .then(res =>this.setState({customers:res}))
+      .catch(err => console.log(err));
   }
 
   callApi = async() =>{
     const response = await fetch('/api/customers');
     const body = await response.json();
+    console.log("Customers Retrived");
     console.log(body);
     return body;
   }
