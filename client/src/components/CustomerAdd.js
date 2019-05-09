@@ -103,7 +103,7 @@ class CustomerAdd extends Component{
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-                    고객추가
+                    고객 추가하기
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>고객추가</DialogTitle>

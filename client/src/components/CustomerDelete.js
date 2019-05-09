@@ -37,6 +37,8 @@ class CustomerDelete extends Component{
 
     deleteCustomer(id){
         const url = '/api/customer/' + id;
+        console.log(url);
+        
         fetch(url, {
             method: 'DELETE'
         });
