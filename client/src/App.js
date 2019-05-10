@@ -99,7 +99,7 @@ const styles = theme => ({
 })
 
 class App extends Component {
-
+ 
   constructor(props){
     super(props);
     this.state = {
@@ -167,7 +167,7 @@ class App extends Component {
             <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+            <Typography className={classes.title} variant="h6" color="inherit" noWrap useNextVariants="ture">
               고객 관리 시스템
             </Typography>
             <div className={classes.grow} />
@@ -194,9 +194,9 @@ class App extends Component {
         <Paper className={classes.paper}>
           <Table className={classes.table}>
             <TableHead>
-              <TableRow>
+              <TableRow key="header">
                 {cellList.map(c => {
-                  return <TableCell className={classes.tableHead} >{c}</TableCell>
+                  return <TableCell className={classes.tableHead} key={c.id}>{c}</TableCell>
                 })}
               </TableRow>
             </TableHead>
@@ -204,12 +204,9 @@ class App extends Component {
               {
                 this.state.customers ? 
                   filteredComponents(this.state.customers) :
-                  // this.state.customers.map((c) => {
-                  // return(<Customer stateRefresh={this.stateRefresh} key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>);
-                  // }) : 
-                <TableRow>
-                  <TableCell colSpan="6" align="center"><CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/></TableCell>
-                </TableRow>
+                  <TableRow>
+                    <TableCell colSpan="6" align="center"><CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/></TableCell>
+                  </TableRow>
               }
             </TableBody>
           </Table>

@@ -11,6 +11,9 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme =>({
     hidden: {
         display: 'none'
+    },
+    typography:{
+        useNextVariants: true
     }
 });
 
@@ -109,8 +112,8 @@ class CustomerAdd extends Component{
                     <DialogTitle>고객추가</DialogTitle>
                     <DialogContent>
                         <input className={classes.hidden} accept="image/*" id="raised-button-file" type='file' file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange}/> <br/>
-                        <label htmlFor="raised-button-file" color="primary" component="span" name="file">
-                            <Button variant="contained">
+                        <label htmlFor="raised-button-file">
+                            <Button variant="contained" color="primary" component="span" name="file">
                                 {this.state.fileName === "" ? "프로필 이미지 선택" : this.state.fileName}
                             </Button>
                         </label><br/>
